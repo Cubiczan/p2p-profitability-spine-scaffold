@@ -1,0 +1,45 @@
+scenario_id,label,section,key,value,ref,source
+BM,Black mass (graphite-bearing),meta,price_deck,,MODEL,synthetic example
+BM,Black mass (graphite-bearing),meta,opex_per_t,500,,synthetic example
+BM,Black mass (graphite-bearing),feed_grade,Ni,0.22,,synthetic example
+BM,Black mass (graphite-bearing),feed_grade,Co,0.04,,synthetic example
+BM,Black mass (graphite-bearing),feed_grade,Li,0.035,,synthetic example
+BM,Black mass (graphite-bearing),feed_grade,Graphite,0.25,,synthetic example
+BM,Black mass (graphite-bearing),feed_payable,Ni,0.75,,synthetic example
+BM,Black mass (graphite-bearing),feed_payable,Co,0.75,,synthetic example
+BM,Black mass (graphite-bearing),yield,NCM_hydroxide,0.4,,synthetic example
+BM,Black mass (graphite-bearing),yield,Li2CO3,0.15,,synthetic example
+BM,Black mass (graphite-bearing),yield,Graphite,0.25,,synthetic example
+BM,Black mass (graphite-bearing),yield,Na2SO4,2.3,,synthetic example
+BM,Black mass (graphite-bearing),product_price,Li2CO3,11000,,synthetic example
+BM,Black mass (graphite-bearing),product_price,Graphite,600,,synthetic example
+BM,Black mass (graphite-bearing),product_price,Na2SO4,150,,synthetic example
+BM,Black mass (graphite-bearing),product_offtake,NCM_hydroxide,,OFFTAKE_A,synthetic example
+BM,Black mass (graphite-bearing),product_grade,Ni,0.5,,synthetic example
+BM,Black mass (graphite-bearing),product_grade,Co,0.07,,synthetic example
+BM,Black mass (graphite-bearing),conversion_cost,chemicals,900,,synthetic example
+BM,Black mass (graphite-bearing),conversion_cost,utility,300,,synthetic example
+BM,Black mass (graphite-bearing),conversion_cost,shipping,150,,synthetic example
+BM,Black mass (graphite-bearing),conversion_cost,waste_disposal,50,,synthetic example
+CP,Cathode powder (no graphite),meta,price_deck,,MODEL,synthetic example
+CP,Cathode powder (no graphite),meta,opex_per_t,500,,synthetic example
+CP,Cathode powder (no graphite),feed_grade,Ni,0.45,,synthetic example
+CP,Cathode powder (no graphite),feed_grade,Co,0.03,,synthetic example
+CP,Cathode powder (no graphite),feed_grade,Li,0.06,,synthetic example
+CP,Cathode powder (no graphite),feed_grade,Graphite,0.0,,synthetic example
+CP,Cathode powder (no graphite),feed_payable,Ni,0.8,,synthetic example
+CP,Cathode powder (no graphite),feed_payable,Co,0.8,,synthetic example
+CP,Cathode powder (no graphite),yield,NCM_hydroxide,0.75,,synthetic example
+CP,Cathode powder (no graphite),yield,Li2CO3,0.25,,synthetic example
+CP,Cathode powder (no graphite),yield,Graphite,0.0,,synthetic example
+CP,Cathode powder (no graphite),yield,Na2SO4,3.6,,synthetic example
+CP,Cathode powder (no graphite),product_price,Li2CO3,11000,,synthetic example
+CP,Cathode powder (no graphite),product_price,Graphite,600,,synthetic example
+CP,Cathode powder (no graphite),product_price,Na2SO4,150,,synthetic example
+CP,Cathode powder (no graphite),product_offtake,NCM_hydroxide,,OFFTAKE_A,synthetic example
+CP,Cathode powder (no graphite),product_grade,Ni,0.5,,synthetic example
+CP,Cathode powder (no graphite),product_grade,Co,0.07,,synthetic example
+CP,Cathode powder (no graphite),conversion_cost,chemicals,1400,,synthetic example
+CP,Cathode powder (no graphite),conversion_cost,utility,300,,synthetic example
+CP,Cathode powder (no graphite),conversion_cost,shipping,150,,synthetic example
+CP,Cathode powder (no graphite),conversion_cost,waste_disposal,50,,synthetic example

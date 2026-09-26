@@ -1,0 +1,9 @@
+lot_id,product,lab,component,value,unit,source
+LOT1,Li2CO3,Buyer lab,purity,99.2,%,synthetic example
+LOT1,Li2CO3,Buyer lab,Na,800,ppm,synthetic example
+LOT1,Li2CO3,Buyer lab,SO4,2500,ppm,synthetic example
+LOT1,Li2CO3,Buyer lab,Fe,6,ppm,synthetic example
+LOT2,Li2CO3,Buyer lab,purity,99.6,%,synthetic example
+LOT2,Li2CO3,Buyer lab,Na,200,ppm,synthetic example
+LOT2,Li2CO3,Buyer lab,SO4,600,ppm,synthetic example
+LOT2,Li2CO3,Buyer lab,Fe,5,ppm,synthetic example

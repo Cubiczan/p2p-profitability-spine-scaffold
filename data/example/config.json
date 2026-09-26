@@ -1,0 +1,67 @@
+{
+  "company": "ExampleCo Plant A",
+  "as_of": "2026-09-01",
+  "owner": "",
+  "last_actual_month": "2026-06",
+  "core_products": [
+    "NCM_hydroxide",
+    "Li2CO3"
+  ],
+  "grade_order": {
+    "Li2CO3": [
+      "STD",
+      "PREMIUM"
+    ]
+  },
+  "recovery": {
+    "Ni": 0.9,
+    "Co": 0.9
+  },
+  "capacity": {
+    "operating_days": 330,
+    "trailing_months": 12,
+    "batch_t": {
+      "b100": 1.0,
+      "b150": 1.5
+    },
+    "hours_per_day": {
+      "h24": 24,
+      "h8": 8
+    }
+  },
+  "index_scenarios": [
+    {
+      "product": "Li2CO3",
+      "index": "INDEX_PREMIUM",
+      "values": [
+        10000,
+        12000,
+        14000,
+        16000
+      ],
+      "other_indices": {},
+      "content": 0.992,
+      "reference_value": 13000,
+      "benchmarks": {
+        "model_11000": 11000
+      }
+    }
+  ],
+  "stream_valuation_decks": [
+    "CURRENT"
+  ],
+  "derived_metrics": {
+    "runrate_vs_claim_pct": {
+      "op": "div",
+      "a": "runrate.trailing_annualised_t",
+      "b": "facts.capacity_claim_tpa",
+      "scale": 100
+    }
+  },
+  "assumptions": [
+    "Synthetic data for demonstration only."
+  ],
+  "unknowns": [
+    "Everything - this is synthetic."
+  ]
+}

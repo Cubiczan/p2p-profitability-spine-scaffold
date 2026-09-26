@@ -1,0 +1,4 @@
+stream_id,element,grade_frac,source
+graphite_byproduct,Ni,0.01,synthetic example
+graphite_byproduct,Co,0.002,synthetic example
+graphite_byproduct,Li,0.002,synthetic example

@@ -1,0 +1,19 @@
+case,vessel,step,hours,source
+current,R1,step1,1,synthetic example
+current,R1,step2,2,synthetic example
+current,R1,step3,1.5,synthetic example
+current,R2,step1,0.5,synthetic example
+current,R2,step2,2.5,synthetic example
+current,R2,step3,2,synthetic example
+current,R3,step1,0.5,synthetic example
+current,R3,step2,1,synthetic example
+current,R3,step3,4,synthetic example
+target,R1,step1,0.5,synthetic example
+target,R1,step2,2,synthetic example
+target,R1,step3,1,synthetic example
+target,R2,step1,0.5,synthetic example
+target,R2,step2,1.5,synthetic example
+target,R2,step3,1,synthetic example
+target,R3,step1,0.5,synthetic example
+target,R3,step2,1,synthetic example
+target,R3,step3,2.5,synthetic example

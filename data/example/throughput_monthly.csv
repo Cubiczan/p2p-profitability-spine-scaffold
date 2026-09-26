@@ -1,0 +1,7 @@
+month,feed_kg,batch_ref,feed_source,source
+2026-01,12000,1-12,Supplier X,synthetic example
+2026-02,15000,13-27,Supplier X,synthetic example
+2026-03,0,NA,Supplier X,synthetic example
+2026-04,22000,28-47,Supplier X,synthetic example
+2026-05,18000,48-63,Supplier X,synthetic example
+2026-06,20000,64-81,Supplier X,synthetic example

@@ -1,0 +1,15 @@
+terms_id,key,metal,value,source
+OFFTAKE_A,benchmark_payable_mid,Ni,0.78,synthetic example
+OFFTAKE_A,benchmark_payable_mid,Co,0.78,synthetic example
+OFFTAKE_A,benchmark_payable_high,Ni,0.82,synthetic example
+OFFTAKE_A,benchmark_payable_high,Co,0.82,synthetic example
+OFFTAKE_A,end_buyer_payable,Ni,0.88,synthetic example
+OFFTAKE_A,end_buyer_payable,Co,0.75,synthetic example
+OFFTAKE_A,floor_payable_adjustment,,0.08,synthetic example
+OFFTAKE_A,base_margin,,0.03,synthetic example
+OFFTAKE_A,profit_share,,0.5,synthetic example
+OFFTAKE_A,direct_cost_fixed,,75,synthetic example
+OFFTAKE_A,financing_rate,,0.1,synthetic example
+OFFTAKE_A,financing_days,,60,synthetic example
+OFFTAKE_A,provisional_pct,,0.85,synthetic example
+OFFTAKE_A,provisional_direct_cost,,75,synthetic example

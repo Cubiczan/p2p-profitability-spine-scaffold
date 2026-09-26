@@ -1,0 +1,8 @@
+product,grade,component,limit_type,value,unit,source
+Li2CO3,STD,purity,min,99.0,%,synthetic example
+Li2CO3,STD,Na,max,1000,ppm,synthetic example
+Li2CO3,STD,SO4,max,3000,ppm,synthetic example
+Li2CO3,PREMIUM,purity,min,99.5,%,synthetic example
+Li2CO3,PREMIUM,Na,max,250,ppm,synthetic example
+Li2CO3,PREMIUM,SO4,max,800,ppm,synthetic example
+Li2CO3,PREMIUM,Fe,max,10,ppm,synthetic example

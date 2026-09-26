@@ -1,0 +1,11 @@
+deck_id,commodity,price_usd_per_t,as_of,basis,source
+MODEL,Ni,16000,2026-01-01,illustrative,synthetic example
+MODEL,Co,33000,2026-01-01,illustrative,synthetic example
+MODEL,Li2CO3,11000,2026-01-01,illustrative,synthetic example
+MODEL,Graphite,600,2026-01-01,illustrative,synthetic example
+MODEL,Na2SO4,150,2026-01-01,illustrative,synthetic example
+CURRENT,Ni,15500,2026-09-01,illustrative,synthetic example
+CURRENT,Co,31000,2026-09-01,illustrative,synthetic example
+CURRENT,Li2CO3,12000,2026-09-01,illustrative,synthetic example
+CURRENT,Graphite,600,2026-09-01,illustrative,synthetic example
+CURRENT,Na2SO4,150,2026-09-01,illustrative,synthetic example

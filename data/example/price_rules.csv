@@ -1,0 +1,4 @@
+rule_id,product,grade,kind,index,pct,discount,fixed_price,source
+STD_FLOOR,Li2CO3,STD,index_minus_discount_x_content,INDEX_PREMIUM,,2500,,synthetic example
+PREMIUM_FLOOR,Li2CO3,PREMIUM,pct_of_index,INDEX_PREMIUM,0.95,,,synthetic example
+MODEL,Li2CO3,MODEL,fixed,,,,11000,synthetic example

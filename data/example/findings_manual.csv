@@ -1,0 +1,2 @@
+code,severity,subject,message,amount_usd,refs
+EXAMPLE,INFO,Example,Analyst findings from document review go here.,,synthetic example

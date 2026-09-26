@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "nb_spine_01_bronze",
+    "description": "Spine bronze ingest"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2a609c75-a3d2-429a-b274-7b52ef4082f4"
+  }
+}

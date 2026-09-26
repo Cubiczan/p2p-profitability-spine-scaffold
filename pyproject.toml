@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "p2p-profitability-spine"
+version = "0.1.0"
+description = "Procurement-to-profitability data spine for multi-product processing plants, deployable on Microsoft Fabric and Foundry"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Shyam Desigan"}]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+deploy = ["azure-identity>=1.17", "requests>=2.31"]
+foundry = ["azure-identity>=1.17", "azure-ai-projects>=2.7.0"]
+
+[project.scripts]
+p2p-spine = "p2p_spine.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 140
+target-version = "py310"
