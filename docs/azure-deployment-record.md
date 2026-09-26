@@ -43,6 +43,7 @@ python infra/teardown.py --subscription <id> --resource-group <rg> --fallback-ca
 | Foundry: *"FTL64 SKU Not Supported"* | Fabric **trial** capacity is not supported by the Foundry → Fabric data agent tool | Deploy an F2 (`deployFabricCapacity=true`) and move the workspace to it |
 | Foundry: *"DisallowedForCrossGeo"* | Capacity region lacks Azure OpenAI and the tenant blocks cross-geo processing | Capacity-level delegated setting "Users can use Copilot, AI Agents…" plus the **tenant** setting allowing Azure OpenAI processing outside the region (tenant admin only) |
 | Fabric Data Agent shows *"No tables selected"* after API create | Table selection in the definition not applied | Tick the lakehouse in the Data Agent explorer and **Publish** |
+| `429 rate_limit_exceeded` on agent answers | 10k TPM too small for 5 retrieved chunks per question | Deploy with `modelCapacity=50` (template parameter) |
 | Index upload timed out after 300 s | Indexer used its own credential and opened an unseen prompt | Indexer now uses the shared token cache |
 
 ## Teardown
