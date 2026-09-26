@@ -120,6 +120,8 @@ def main() -> int:
     ap.add_argument("--engine-spec", default="git+https://github.com/icohangar-ops/p2p-profitability-spine-scaffold@v0.1.0")
     ap.add_argument("--notebook-dir", type=Path, default=REPO / "fabric")
     ap.add_argument("--tenant", default=None)
+    ap.add_argument("--create-workspace", action="store_true", help="Create the workspace on the first active capacity if missing")
+    ap.add_argument("--capacity-id", default=None, help="Capacity to use with --create-workspace")
     ap.add_argument("--run", action="store_true", help="Run bronze then gold notebooks after deploy")
     a = ap.parse_args()
 
@@ -127,8 +129,21 @@ def main() -> int:
     r = fab.call("GET", "/workspaces")
     r.raise_for_status()
     ws = next((w for w in r.json()["value"] if w["displayName"] == a.workspace), None)
+    if not ws and a.create_workspace:
+        caps = fab.call("GET", "/capacities")
+        caps.raise_for_status()
+        active = [c for c in caps.json().get("value", []) if c.get("state") == "Active" and (not a.capacity_id or c["id"] == a.capacity_id)]
+        if not active:
+            print("No active Fabric capacity found (start a trial or assign an F-SKU).", file=sys.stderr)
+            return 2
+        cap = active[0]
+        print(f"creating workspace '{a.workspace}' on capacity {cap.get('displayName')} ({cap.get('sku')}, {cap.get('region')})")
+        created = fab.call("POST", "/workspaces", {"displayName": a.workspace, "capacityId": cap["id"], "description": "Procurement-to-profitability spine"})
+        if created.status_code not in (200, 201):
+            raise RuntimeError(f"create workspace: {created.status_code} {created.text}")
+        ws = created.json()
     if not ws:
-        print(f"Workspace '{a.workspace}' not found. Create it in Fabric (on an F-SKU/trial capacity) and re-run.", file=sys.stderr)
+        print(f"Workspace '{a.workspace}' not found. Re-run with --create-workspace, or create it in Fabric on a trial/F-SKU capacity.", file=sys.stderr)
         return 2
     wsid = ws["id"]
     print(f"workspace {a.workspace} = {wsid}")
