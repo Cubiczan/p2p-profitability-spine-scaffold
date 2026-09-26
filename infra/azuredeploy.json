@@ -17,11 +17,15 @@
     "location": {
       "type": "string",
       "defaultValue": "southeastasia",
-      "metadata": { "description": "Region for all resources." }
+      "metadata": {
+        "description": "Region for all resources."
+      }
     },
     "tags": {
       "type": "object",
-      "defaultValue": { "workload": "p2p-profitability-spine" }
+      "defaultValue": {
+        "workload": "p2p-profitability-spine"
+      }
     },
     "logRetentionDays": {
       "type": "int",
@@ -32,7 +36,9 @@
     "keyVaultEnablePurgeProtection": {
       "type": "bool",
       "defaultValue": false,
-      "metadata": { "description": "Irreversible once enabled (the property does not accept false). Recommended true for production." }
+      "metadata": {
+        "description": "Irreversible once enabled (the property does not accept false). Recommended true for production."
+      }
     },
     "keyVaultSoftDeleteRetentionDays": {
       "type": "int",
@@ -43,7 +49,9 @@
     "aiServicesDisableLocalAuth": {
       "type": "bool",
       "defaultValue": true,
-      "metadata": { "description": "true = Entra ID only (no API keys) on the Foundry / Document Intelligence account." }
+      "metadata": {
+        "description": "true = Entra ID only (no API keys) on the Foundry / Document Intelligence account."
+      }
     },
     "projectName": {
       "type": "string",
@@ -53,62 +61,104 @@
     },
     "modelDeploymentName": {
       "type": "string",
-      "defaultValue": "gpt-5.4-mini"
+      "defaultValue": "gpt-5-mini"
     },
     "modelName": {
       "type": "string",
-      "defaultValue": "gpt-5.4-mini",
-      "metadata": { "description": "Azure OpenAI model name. gpt-5.4-mini (2026-03-17) is listed for Global Standard in southeastasia; fallback gpt-4.1-mini (2025-04-14)." }
+      "defaultValue": "gpt-5-mini",
+      "metadata": {
+        "description": "Azure OpenAI model name. gpt-5.4-mini (2026-03-17) is listed for Global Standard in southeastasia; fallback gpt-4.1-mini (2025-04-14)."
+      }
     },
     "modelVersion": {
       "type": "string",
-      "defaultValue": "2026-03-17"
+      "defaultValue": "2025-08-07"
     },
     "modelSkuName": {
       "type": "string",
       "defaultValue": "GlobalStandard",
-      "allowedValues": [ "GlobalStandard", "DataZoneStandard", "Standard" ]
+      "allowedValues": [
+        "GlobalStandard",
+        "DataZoneStandard",
+        "Standard"
+      ]
     },
     "modelCapacity": {
       "type": "int",
       "defaultValue": 10,
       "minValue": 1,
-      "metadata": { "description": "Capacity in units of 1,000 tokens per minute. Must fit your subscription quota." }
+      "metadata": {
+        "description": "Capacity in units of 1,000 tokens per minute. Must fit your subscription quota."
+      }
     },
     "searchSku": {
       "type": "string",
       "defaultValue": "basic",
-      "allowedValues": [ "free", "basic", "standard", "standard2", "standard3", "storage_optimized_l1", "storage_optimized_l2" ]
+      "allowedValues": [
+        "free",
+        "basic",
+        "standard",
+        "standard2",
+        "standard3",
+        "storage_optimized_l1",
+        "storage_optimized_l2"
+      ]
     },
     "searchSemanticSearch": {
       "type": "string",
       "defaultValue": "disabled",
-      "allowedValues": [ "disabled", "free", "standard" ]
+      "allowedValues": [
+        "disabled",
+        "free",
+        "standard"
+      ]
     },
     "deployFabricCapacity": {
       "type": "bool",
       "defaultValue": false,
-      "metadata": { "description": "Billable while running. Off by default; F2 can be paused from the portal." }
+      "metadata": {
+        "description": "Billable while running. Off by default; F2 can be paused from the portal."
+      }
     },
     "fabricSku": {
       "type": "string",
       "defaultValue": "F2",
-      "allowedValues": [ "F2", "F4", "F8", "F16", "F32", "F64", "F128", "F256", "F512", "F1024", "F2048" ]
+      "allowedValues": [
+        "F2",
+        "F4",
+        "F8",
+        "F16",
+        "F32",
+        "F64",
+        "F128",
+        "F256",
+        "F512",
+        "F1024",
+        "F2048"
+      ]
     },
     "fabricAdminMembers": {
       "type": "array",
       "defaultValue": [],
-      "metadata": { "description": "Capacity admins: user principal names (e.g. admin@contoso.com) or service principal object ids. Required when deployFabricCapacity = true." }
+      "metadata": {
+        "description": "Capacity admins: user principal names (e.g. admin@contoso.com) or service principal object ids. Required when deployFabricCapacity = true."
+      }
     },
     "principalId": {
       "type": "string",
       "defaultValue": "",
-      "metadata": { "description": "Optional Entra object id of the operator (user or group). When set, grants Key Vault Secrets Officer, Search Index Data Contributor and Foundry User. deploy_infra.py fills this from the signed-in token." }
+      "metadata": {
+        "description": "Optional Entra object id of the operator (user or group). When set, grants Key Vault Secrets Officer, Search Index Data Contributor and Foundry User. deploy_infra.py fills this from the signed-in token."
+      }
     },
     "principalType": {
       "type": "string",
       "defaultValue": "User",
-      "allowedValues": [ "User", "Group", "ServicePrincipal" ]
+      "allowedValues": [
+        "User",
+        "Group",
+        "ServicePrincipal"
+      ]
     }
   },
   "variables": {
@@ -140,7 +190,9 @@
       "location": "[parameters('location')]",
       "tags": "[parameters('tags')]",
       "properties": {
-        "sku": { "name": "PerGB2018" },
+        "sku": {
+          "name": "PerGB2018"
+        },
         "retentionInDays": "[parameters('logRetentionDays')]"
       }
     },
@@ -168,7 +220,10 @@
       "tags": "[parameters('tags')]",
       "properties": {
         "tenantId": "[subscription().tenantId]",
-        "sku": { "family": "A", "name": "standard" },
+        "sku": {
+          "family": "A",
+          "name": "standard"
+        },
         "enableRbacAuthorization": true,
         "enableSoftDelete": true,
         "softDeleteRetentionInDays": "[parameters('keyVaultSoftDeleteRetentionDays')]",
@@ -184,8 +239,12 @@
       "location": "[parameters('location')]",
       "tags": "[parameters('tags')]",
       "kind": "AIServices",
-      "sku": { "name": "S0" },
-      "identity": { "type": "SystemAssigned" },
+      "sku": {
+        "name": "S0"
+      },
+      "identity": {
+        "type": "SystemAssigned"
+      },
       "properties": {
         "allowProjectManagement": true,
         "customSubDomainName": "[variables('aiName')]",
@@ -199,12 +258,16 @@
       "name": "[format('{0}/{1}', variables('aiName'), parameters('projectName'))]",
       "location": "[parameters('location')]",
       "tags": "[parameters('tags')]",
-      "identity": { "type": "SystemAssigned" },
+      "identity": {
+        "type": "SystemAssigned"
+      },
       "properties": {
         "displayName": "[parameters('projectName')]",
         "description": "Procurement-to-profitability spine agents"
       },
-      "dependsOn": [ "[variables('aiId')]" ]
+      "dependsOn": [
+        "[variables('aiId')]"
+      ]
     },
     {
       "type": "Microsoft.CognitiveServices/accounts/deployments",
@@ -233,8 +296,12 @@
       "name": "[variables('searchName')]",
       "location": "[parameters('location')]",
       "tags": "[parameters('tags')]",
-      "sku": { "name": "[parameters('searchSku')]" },
-      "identity": { "type": "SystemAssigned" },
+      "sku": {
+        "name": "[parameters('searchSku')]"
+      },
+      "identity": {
+        "type": "SystemAssigned"
+      },
       "properties": {
         "replicaCount": 1,
         "partitionCount": 1,
@@ -242,7 +309,9 @@
         "publicNetworkAccess": "Enabled",
         "semanticSearch": "[parameters('searchSemanticSearch')]",
         "authOptions": {
-          "aadOrApiKey": { "aadAuthFailureMode": "http401WithBearerChallenge" }
+          "aadOrApiKey": {
+            "aadAuthFailureMode": "http401WithBearerChallenge"
+          }
         }
       }
     },
@@ -253,9 +322,14 @@
       "name": "[variables('fabricName')]",
       "location": "[parameters('location')]",
       "tags": "[parameters('tags')]",
-      "sku": { "name": "[parameters('fabricSku')]", "tier": "Fabric" },
+      "sku": {
+        "name": "[parameters('fabricSku')]",
+        "tier": "Fabric"
+      },
       "properties": {
-        "administration": { "members": "[parameters('fabricAdminMembers')]" }
+        "administration": {
+          "members": "[parameters('fabricAdminMembers')]"
+        }
       }
     },
     {
@@ -269,7 +343,10 @@
         "principalType": "ServicePrincipal",
         "description": "Foundry project identity reads search indexes"
       },
-      "dependsOn": [ "[variables('searchId')]", "[variables('projectId')]" ]
+      "dependsOn": [
+        "[variables('searchId')]",
+        "[variables('projectId')]"
+      ]
     },
     {
       "type": "Microsoft.Authorization/roleAssignments",
@@ -282,7 +359,10 @@
         "principalType": "ServicePrincipal",
         "description": "Foundry project identity manages search index definitions"
       },
-      "dependsOn": [ "[variables('searchId')]", "[variables('projectId')]" ]
+      "dependsOn": [
+        "[variables('searchId')]",
+        "[variables('projectId')]"
+      ]
     },
     {
       "type": "Microsoft.Authorization/roleAssignments",
@@ -295,7 +375,10 @@
         "principalType": "ServicePrincipal",
         "description": "Foundry account identity reads search indexes"
       },
-      "dependsOn": [ "[variables('searchId')]", "[variables('aiId')]" ]
+      "dependsOn": [
+        "[variables('searchId')]",
+        "[variables('aiId')]"
+      ]
     },
     {
       "type": "Microsoft.Authorization/roleAssignments",
@@ -308,7 +391,10 @@
         "principalType": "ServicePrincipal",
         "description": "Foundry account identity manages search index definitions"
       },
-      "dependsOn": [ "[variables('searchId')]", "[variables('aiId')]" ]
+      "dependsOn": [
+        "[variables('searchId')]",
+        "[variables('aiId')]"
+      ]
     },
     {
       "condition": "[variables('hasPrincipal')]",
@@ -322,7 +408,9 @@
         "principalType": "[parameters('principalType')]",
         "description": "Operator manages Key Vault secrets"
       },
-      "dependsOn": [ "[variables('kvId')]" ]
+      "dependsOn": [
+        "[variables('kvId')]"
+      ]
     },
     {
       "condition": "[variables('hasPrincipal')]",
@@ -336,7 +424,9 @@
         "principalType": "[parameters('principalType')]",
         "description": "Operator loads and queries search indexes"
       },
-      "dependsOn": [ "[variables('searchId')]" ]
+      "dependsOn": [
+        "[variables('searchId')]"
+      ]
     },
     {
       "condition": "[variables('hasPrincipal')]",
@@ -350,7 +440,9 @@
         "principalType": "[parameters('principalType')]",
         "description": "Operator uses Foundry projects and agents (Foundry User, formerly Azure AI User)"
       },
-      "dependsOn": [ "[variables('aiId')]" ]
+      "dependsOn": [
+        "[variables('aiId')]"
+      ]
     }
   ],
   "outputs": {

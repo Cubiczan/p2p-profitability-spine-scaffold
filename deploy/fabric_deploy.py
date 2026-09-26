@@ -25,7 +25,7 @@ from typing import Dict, List, Optional
 
 import requests
 from azure.core.credentials import TokenCredential
-from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential, TokenCachePersistenceOptions
 
 API = "https://api.fabric.microsoft.com/v1"
 ONELAKE = "https://onelake.dfs.fabric.microsoft.com"
@@ -113,6 +113,27 @@ def fabric_py_to_ipynb(src: str, params: Dict[str, str]) -> dict:
     }
 
 
+
+def _interactive_credential(tenant, client_id):  # type: ignore[no-untyped-def]
+    """Browser sign-in with an encrypted OS token cache and a saved account record (no secrets),
+    so repeated runs reuse the session instead of prompting again."""
+    from pathlib import Path as _P
+
+    from azure.identity import AuthenticationRecord
+
+    rec_path = _P.home() / ".p2p-spine" / f"auth_record_{client_id or 'default'}.json"
+    kw = {"tenant_id": tenant, "cache_persistence_options": TokenCachePersistenceOptions(name="p2p-spine")}
+    if client_id:
+        kw["client_id"] = client_id
+    if rec_path.exists():
+        kw["authentication_record"] = AuthenticationRecord.deserialize(rec_path.read_text())
+        return InteractiveBrowserCredential(**kw)
+    cred = InteractiveBrowserCredential(**kw)
+    record = cred.authenticate(scopes=["https://management.azure.com/.default"])
+    rec_path.parent.mkdir(parents=True, exist_ok=True)
+    rec_path.write_text(record.serialize())
+    return cred
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--workspace", required=True, help="Fabric workspace display name (must be on a Fabric capacity)")
@@ -133,7 +154,7 @@ def main() -> int:
     if a.auth == "default":
         cred: TokenCredential = DefaultAzureCredential()
     else:
-        cred = InteractiveBrowserCredential(tenant_id=a.tenant, **({"client_id": a.client_id} if a.client_id else {}))
+        cred = _interactive_credential(a.tenant, a.client_id)
     fab = Fabric(cred)
     r = fab.call("GET", "/workspaces")
     r.raise_for_status()

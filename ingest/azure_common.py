@@ -45,6 +45,16 @@ def bearer_headers(auth: str, scope: str, client_id: Optional[str] = None, tenan
             kw["client_id"] = client_id
         if tenant_id:
             kw["tenant_id"] = tenant_id
+        from pathlib import Path
+
+        from azure.identity import AuthenticationRecord, TokenCachePersistenceOptions
+
+        # Shared encrypted token cache + saved account record (same as deploy/ and infra/ scripts),
+        # so an existing sign-in is reused instead of opening another browser prompt.
+        kw["cache_persistence_options"] = TokenCachePersistenceOptions(name="p2p-spine")
+        rec = Path.home() / ".p2p-spine" / f"auth_record_{client_id or 'default'}.json"
+        if rec.exists():
+            kw["authentication_record"] = AuthenticationRecord.deserialize(rec.read_text())
         cred = InteractiveBrowserCredential(**kw)
     else:
         cred = DefaultAzureCredential(managed_identity_client_id=client_id) if client_id else DefaultAzureCredential()

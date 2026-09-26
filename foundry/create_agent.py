@@ -72,9 +72,20 @@ def main() -> int:
     ap.add_argument("--name", default="p2p-spine-analyst")
     ap.add_argument("--instructions", type=Path, default=HERE / "agent_instructions.md")
     ap.add_argument("--ask", default="", help="Optional smoke-test question")
+    ap.add_argument("--auth", choices=["default", "interactive"], default="default")
+    ap.add_argument("--client-id", default=None, help="Public client id for --auth interactive")
     a = ap.parse_args()
 
-    project = AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=DefaultAzureCredential())
+    if a.auth == "interactive":
+        import sys
+
+        sys.path.insert(0, str(HERE.parent / "deploy"))
+        from fabric_deploy import _interactive_credential
+
+        credential = _interactive_credential(None, a.client_id)
+    else:
+        credential = DefaultAzureCredential()
+    project = AIProjectClient(endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"], credential=credential)
     fabric_conn = project.connections.get(os.environ["FABRIC_CONNECTION_NAME"])
     instructions = a.instructions.read_text(encoding="utf-8").replace("{company}", os.environ.get("SPINE_COMPANY", "the plant"))
 
