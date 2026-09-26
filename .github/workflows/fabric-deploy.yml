@@ -1,0 +1,71 @@
+# Deploys the lakehouse data contract and notebooks to a Fabric workspace.
+# Auth: GitHub OIDC -> Entra app (federated credential) via azure/login, then
+# deploy/fabric_deploy.py --auth default (DefaultAzureCredential -> AzureCliCredential).
+# Setup: infra/README.md, section "GitHub OIDC app for Fabric deploys".
+name: fabric-deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      workspace:
+        description: Fabric workspace display name (defaults to repo variable FABRIC_WORKSPACE)
+        required: false
+        default: ""
+      dataset:
+        description: Dataset name (folder under data/)
+        required: false
+        default: example
+      run_notebooks:
+        description: Run bronze then gold notebooks after deploy
+        type: boolean
+        required: false
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - "fabric/**"
+      - "data/**"
+      - "deploy/**"
+      - ".github/workflows/fabric-deploy.yml"
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: fabric-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Skip on push until the repo is configured (variable FABRIC_WORKSPACE set).
+    if: github.event_name == 'workflow_dispatch' || vars.FABRIC_WORKSPACE != ''
+    env:
+      WORKSPACE: ${{ inputs.workspace || vars.FABRIC_WORKSPACE }}
+      DATASET: ${{ inputs.dataset || 'example' }}
+      RUN_NOTEBOOKS: ${{ inputs.run_notebooks && 'true' || 'false' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
+
+      - name: Install deploy dependencies
+        run: python -m pip install "azure-identity>=1.17" "requests>=2.31"
+
+      - name: Deploy to Fabric
+        shell: bash
+        run: |
+          if [ -z "$WORKSPACE" ]; then echo "Set repo variable FABRIC_WORKSPACE or pass the workspace input." >&2; exit 2; fi
+          args=(--auth default --workspace "$WORKSPACE" --data "data/$DATASET" --dataset "$DATASET")
+          if [ "$RUN_NOTEBOOKS" = "true" ]; then args+=(--run); fi
+          python deploy/fabric_deploy.py "${args[@]}"

@@ -1,0 +1,390 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "description": "Azure platform for the procurement-to-profitability spine: Log Analytics + Application Insights, Key Vault (RBAC), Azure AI Foundry (AIServices account + project + model deployment; also serves Document Intelligence), Azure AI Search, optional Microsoft Fabric F-SKU capacity, and RBAC wiring. API versions and doc URLs are listed in infra/README.md. All API versions are GA (no preview versions are used)."
+  },
+  "parameters": {
+    "namePrefix": {
+      "type": "string",
+      "defaultValue": "p2pspine",
+      "minLength": 3,
+      "maxLength": 12,
+      "metadata": {
+        "description": "Lowercase letters/digits, starting with a letter (3-12 chars). Used in every resource name; a 6-char hash of the resource group id is appended for global uniqueness."
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "southeastasia",
+      "metadata": { "description": "Region for all resources." }
+    },
+    "tags": {
+      "type": "object",
+      "defaultValue": { "workload": "p2p-profitability-spine" }
+    },
+    "logRetentionDays": {
+      "type": "int",
+      "defaultValue": 30,
+      "minValue": 30,
+      "maxValue": 730
+    },
+    "keyVaultEnablePurgeProtection": {
+      "type": "bool",
+      "defaultValue": false,
+      "metadata": { "description": "Irreversible once enabled (the property does not accept false). Recommended true for production." }
+    },
+    "keyVaultSoftDeleteRetentionDays": {
+      "type": "int",
+      "defaultValue": 90,
+      "minValue": 7,
+      "maxValue": 90
+    },
+    "aiServicesDisableLocalAuth": {
+      "type": "bool",
+      "defaultValue": true,
+      "metadata": { "description": "true = Entra ID only (no API keys) on the Foundry / Document Intelligence account." }
+    },
+    "projectName": {
+      "type": "string",
+      "defaultValue": "spine",
+      "minLength": 2,
+      "maxLength": 64
+    },
+    "modelDeploymentName": {
+      "type": "string",
+      "defaultValue": "gpt-5.4-mini"
+    },
+    "modelName": {
+      "type": "string",
+      "defaultValue": "gpt-5.4-mini",
+      "metadata": { "description": "Azure OpenAI model name. gpt-5.4-mini (2026-03-17) is listed for Global Standard in southeastasia; fallback gpt-4.1-mini (2025-04-14)." }
+    },
+    "modelVersion": {
+      "type": "string",
+      "defaultValue": "2026-03-17"
+    },
+    "modelSkuName": {
+      "type": "string",
+      "defaultValue": "GlobalStandard",
+      "allowedValues": [ "GlobalStandard", "DataZoneStandard", "Standard" ]
+    },
+    "modelCapacity": {
+      "type": "int",
+      "defaultValue": 10,
+      "minValue": 1,
+      "metadata": { "description": "Capacity in units of 1,000 tokens per minute. Must fit your subscription quota." }
+    },
+    "searchSku": {
+      "type": "string",
+      "defaultValue": "basic",
+      "allowedValues": [ "free", "basic", "standard", "standard2", "standard3", "storage_optimized_l1", "storage_optimized_l2" ]
+    },
+    "searchSemanticSearch": {
+      "type": "string",
+      "defaultValue": "disabled",
+      "allowedValues": [ "disabled", "free", "standard" ]
+    },
+    "deployFabricCapacity": {
+      "type": "bool",
+      "defaultValue": false,
+      "metadata": { "description": "Billable while running. Off by default; F2 can be paused from the portal." }
+    },
+    "fabricSku": {
+      "type": "string",
+      "defaultValue": "F2",
+      "allowedValues": [ "F2", "F4", "F8", "F16", "F32", "F64", "F128", "F256", "F512", "F1024", "F2048" ]
+    },
+    "fabricAdminMembers": {
+      "type": "array",
+      "defaultValue": [],
+      "metadata": { "description": "Capacity admins: user principal names (e.g. admin@contoso.com) or service principal object ids. Required when deployFabricCapacity = true." }
+    },
+    "principalId": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": { "description": "Optional Entra object id of the operator (user or group). When set, grants Key Vault Secrets Officer, Search Index Data Contributor and Foundry User. deploy_infra.py fills this from the signed-in token." }
+    },
+    "principalType": {
+      "type": "string",
+      "defaultValue": "User",
+      "allowedValues": [ "User", "Group", "ServicePrincipal" ]
+    }
+  },
+  "variables": {
+    "suffix": "[substring(uniqueString(resourceGroup().id), 0, 6)]",
+    "logName": "[format('{0}-log-{1}', parameters('namePrefix'), variables('suffix'))]",
+    "appiName": "[format('{0}-appi-{1}', parameters('namePrefix'), variables('suffix'))]",
+    "kvName": "[format('{0}-kv-{1}', parameters('namePrefix'), variables('suffix'))]",
+    "aiName": "[format('{0}-ais-{1}', parameters('namePrefix'), variables('suffix'))]",
+    "searchName": "[format('{0}-srch-{1}', parameters('namePrefix'), variables('suffix'))]",
+    "fabricName": "[format('{0}fab{1}', parameters('namePrefix'), variables('suffix'))]",
+    "aiId": "[resourceId('Microsoft.CognitiveServices/accounts', variables('aiName'))]",
+    "projectId": "[resourceId('Microsoft.CognitiveServices/accounts/projects', variables('aiName'), parameters('projectName'))]",
+    "searchId": "[resourceId('Microsoft.Search/searchServices', variables('searchName'))]",
+    "kvId": "[resourceId('Microsoft.KeyVault/vaults', variables('kvName'))]",
+    "roles": {
+      "searchIndexDataReader": "1407120a-92aa-4202-b7e9-c0e197c71c8f",
+      "searchIndexDataContributor": "8ebe5a00-799e-43f5-93ac-243d3dce84a7",
+      "searchServiceContributor": "7ca78c08-252a-4471-8644-bb5ff32d4ba0",
+      "keyVaultSecretsOfficer": "b86a8fe4-44ce-4948-aee5-eccb2c155cd7",
+      "foundryUser": "53ca6127-db72-4b80-b1b0-d745d6d5456d"
+    },
+    "hasPrincipal": "[not(empty(parameters('principalId')))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.OperationalInsights/workspaces",
+      "apiVersion": "2025-02-01",
+      "name": "[variables('logName')]",
+      "location": "[parameters('location')]",
+      "tags": "[parameters('tags')]",
+      "properties": {
+        "sku": { "name": "PerGB2018" },
+        "retentionInDays": "[parameters('logRetentionDays')]"
+      }
+    },
+    {
+      "type": "Microsoft.Insights/components",
+      "apiVersion": "2020-02-02",
+      "name": "[variables('appiName')]",
+      "location": "[parameters('location')]",
+      "tags": "[parameters('tags')]",
+      "kind": "web",
+      "properties": {
+        "Application_Type": "web",
+        "WorkspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', variables('logName'))]",
+        "IngestionMode": "LogAnalytics"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.OperationalInsights/workspaces', variables('logName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "apiVersion": "2025-05-01",
+      "name": "[variables('kvName')]",
+      "location": "[parameters('location')]",
+      "tags": "[parameters('tags')]",
+      "properties": {
+        "tenantId": "[subscription().tenantId]",
+        "sku": { "family": "A", "name": "standard" },
+        "enableRbacAuthorization": true,
+        "enableSoftDelete": true,
+        "softDeleteRetentionInDays": "[parameters('keyVaultSoftDeleteRetentionDays')]",
+        "enablePurgeProtection": "[if(parameters('keyVaultEnablePurgeProtection'), true(), null())]",
+        "accessPolicies": [],
+        "publicNetworkAccess": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.CognitiveServices/accounts",
+      "apiVersion": "2025-06-01",
+      "name": "[variables('aiName')]",
+      "location": "[parameters('location')]",
+      "tags": "[parameters('tags')]",
+      "kind": "AIServices",
+      "sku": { "name": "S0" },
+      "identity": { "type": "SystemAssigned" },
+      "properties": {
+        "allowProjectManagement": true,
+        "customSubDomainName": "[variables('aiName')]",
+        "disableLocalAuth": "[parameters('aiServicesDisableLocalAuth')]",
+        "publicNetworkAccess": "Enabled"
+      }
+    },
+    {
+      "type": "Microsoft.CognitiveServices/accounts/projects",
+      "apiVersion": "2025-06-01",
+      "name": "[format('{0}/{1}', variables('aiName'), parameters('projectName'))]",
+      "location": "[parameters('location')]",
+      "tags": "[parameters('tags')]",
+      "identity": { "type": "SystemAssigned" },
+      "properties": {
+        "displayName": "[parameters('projectName')]",
+        "description": "Procurement-to-profitability spine agents"
+      },
+      "dependsOn": [ "[variables('aiId')]" ]
+    },
+    {
+      "type": "Microsoft.CognitiveServices/accounts/deployments",
+      "apiVersion": "2025-06-01",
+      "name": "[format('{0}/{1}', variables('aiName'), parameters('modelDeploymentName'))]",
+      "sku": {
+        "name": "[parameters('modelSkuName')]",
+        "capacity": "[parameters('modelCapacity')]"
+      },
+      "properties": {
+        "model": {
+          "format": "OpenAI",
+          "name": "[parameters('modelName')]",
+          "version": "[parameters('modelVersion')]"
+        },
+        "versionUpgradeOption": "OnceNewDefaultVersionAvailable"
+      },
+      "dependsOn": [
+        "[variables('aiId')]",
+        "[variables('projectId')]"
+      ]
+    },
+    {
+      "type": "Microsoft.Search/searchServices",
+      "apiVersion": "2025-05-01",
+      "name": "[variables('searchName')]",
+      "location": "[parameters('location')]",
+      "tags": "[parameters('tags')]",
+      "sku": { "name": "[parameters('searchSku')]" },
+      "identity": { "type": "SystemAssigned" },
+      "properties": {
+        "replicaCount": 1,
+        "partitionCount": 1,
+        "hostingMode": "Default",
+        "publicNetworkAccess": "Enabled",
+        "semanticSearch": "[parameters('searchSemanticSearch')]",
+        "authOptions": {
+          "aadOrApiKey": { "aadAuthFailureMode": "http401WithBearerChallenge" }
+        }
+      }
+    },
+    {
+      "condition": "[parameters('deployFabricCapacity')]",
+      "type": "Microsoft.Fabric/capacities",
+      "apiVersion": "2023-11-01",
+      "name": "[variables('fabricName')]",
+      "location": "[parameters('location')]",
+      "tags": "[parameters('tags')]",
+      "sku": { "name": "[parameters('fabricSku')]", "tier": "Fabric" },
+      "properties": {
+        "administration": { "members": "[parameters('fabricAdminMembers')]" }
+      }
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[guid(variables('searchId'), variables('projectId'), variables('roles').searchIndexDataReader)]",
+      "scope": "[format('Microsoft.Search/searchServices/{0}', variables('searchName'))]",
+      "properties": {
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('roles').searchIndexDataReader)]",
+        "principalId": "[reference(variables('projectId'), '2025-06-01', 'full').identity.principalId]",
+        "principalType": "ServicePrincipal",
+        "description": "Foundry project identity reads search indexes"
+      },
+      "dependsOn": [ "[variables('searchId')]", "[variables('projectId')]" ]
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[guid(variables('searchId'), variables('projectId'), variables('roles').searchServiceContributor)]",
+      "scope": "[format('Microsoft.Search/searchServices/{0}', variables('searchName'))]",
+      "properties": {
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('roles').searchServiceContributor)]",
+        "principalId": "[reference(variables('projectId'), '2025-06-01', 'full').identity.principalId]",
+        "principalType": "ServicePrincipal",
+        "description": "Foundry project identity manages search index definitions"
+      },
+      "dependsOn": [ "[variables('searchId')]", "[variables('projectId')]" ]
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[guid(variables('searchId'), variables('aiId'), variables('roles').searchIndexDataReader)]",
+      "scope": "[format('Microsoft.Search/searchServices/{0}', variables('searchName'))]",
+      "properties": {
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('roles').searchIndexDataReader)]",
+        "principalId": "[reference(variables('aiId'), '2025-06-01', 'full').identity.principalId]",
+        "principalType": "ServicePrincipal",
+        "description": "Foundry account identity reads search indexes"
+      },
+      "dependsOn": [ "[variables('searchId')]", "[variables('aiId')]" ]
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[guid(variables('searchId'), variables('aiId'), variables('roles').searchServiceContributor)]",
+      "scope": "[format('Microsoft.Search/searchServices/{0}', variables('searchName'))]",
+      "properties": {
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('roles').searchServiceContributor)]",
+        "principalId": "[reference(variables('aiId'), '2025-06-01', 'full').identity.principalId]",
+        "principalType": "ServicePrincipal",
+        "description": "Foundry account identity manages search index definitions"
+      },
+      "dependsOn": [ "[variables('searchId')]", "[variables('aiId')]" ]
+    },
+    {
+      "condition": "[variables('hasPrincipal')]",
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[guid(variables('kvId'), parameters('principalId'), variables('roles').keyVaultSecretsOfficer)]",
+      "scope": "[format('Microsoft.KeyVault/vaults/{0}', variables('kvName'))]",
+      "properties": {
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('roles').keyVaultSecretsOfficer)]",
+        "principalId": "[parameters('principalId')]",
+        "principalType": "[parameters('principalType')]",
+        "description": "Operator manages Key Vault secrets"
+      },
+      "dependsOn": [ "[variables('kvId')]" ]
+    },
+    {
+      "condition": "[variables('hasPrincipal')]",
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[guid(variables('searchId'), parameters('principalId'), variables('roles').searchIndexDataContributor)]",
+      "scope": "[format('Microsoft.Search/searchServices/{0}', variables('searchName'))]",
+      "properties": {
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('roles').searchIndexDataContributor)]",
+        "principalId": "[parameters('principalId')]",
+        "principalType": "[parameters('principalType')]",
+        "description": "Operator loads and queries search indexes"
+      },
+      "dependsOn": [ "[variables('searchId')]" ]
+    },
+    {
+      "condition": "[variables('hasPrincipal')]",
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[guid(variables('aiId'), parameters('principalId'), variables('roles').foundryUser)]",
+      "scope": "[format('Microsoft.CognitiveServices/accounts/{0}', variables('aiName'))]",
+      "properties": {
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('roles').foundryUser)]",
+        "principalId": "[parameters('principalId')]",
+        "principalType": "[parameters('principalType')]",
+        "description": "Operator uses Foundry projects and agents (Foundry User, formerly Azure AI User)"
+      },
+      "dependsOn": [ "[variables('aiId')]" ]
+    }
+  ],
+  "outputs": {
+    "aiServicesName": {
+      "type": "string",
+      "value": "[variables('aiName')]"
+    },
+    "aiServicesEndpoint": {
+      "type": "string",
+      "value": "[reference(variables('aiId'), '2025-06-01').endpoint]"
+    },
+    "foundryProjectEndpoint": {
+      "type": "string",
+      "value": "[format('https://{0}.services.ai.azure.com/api/projects/{1}', variables('aiName'), parameters('projectName'))]"
+    },
+    "modelDeploymentName": {
+      "type": "string",
+      "value": "[parameters('modelDeploymentName')]"
+    },
+    "searchEndpoint": {
+      "type": "string",
+      "value": "[format('https://{0}.search.windows.net', variables('searchName'))]"
+    },
+    "keyVaultUri": {
+      "type": "string",
+      "value": "[reference(variables('kvId'), '2025-05-01').vaultUri]"
+    },
+    "appInsightsConnectionString": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.Insights/components', variables('appiName')), '2020-02-02').ConnectionString]"
+    },
+    "fabricCapacityName": {
+      "type": "string",
+      "value": "[if(parameters('deployFabricCapacity'), variables('fabricName'), '')]"
+    }
+  }
+}

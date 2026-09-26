@@ -8,7 +8,8 @@ Usage:
   uv run --with azure-identity --with requests python deploy/fabric_deploy.py \
       --workspace "My Workspace" --data data/example --dataset example --run
 
-You sign in interactively; no secrets are stored or printed.
+You sign in interactively; no secrets are stored or printed. In CI (after azure/login with OIDC)
+use --auth default, which uses DefaultAzureCredential (AzureCliCredential picks up the login).
 """
 
 from __future__ import annotations
@@ -23,7 +24,8 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 import requests
-from azure.identity import InteractiveBrowserCredential
+from azure.core.credentials import TokenCredential
+from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 
 API = "https://api.fabric.microsoft.com/v1"
 ONELAKE = "https://onelake.dfs.fabric.microsoft.com"
@@ -34,7 +36,7 @@ NOTEBOOKS = ["nb_spine_01_bronze", "nb_spine_02_gold"]
 
 
 class Fabric:
-    def __init__(self, cred: InteractiveBrowserCredential) -> None:
+    def __init__(self, cred: TokenCredential) -> None:
         self.cred = cred
 
     def _h(self, scope: str = FABRIC_SCOPE) -> Dict[str, str]:
@@ -120,12 +122,19 @@ def main() -> int:
     ap.add_argument("--engine-spec", default="git+https://github.com/icohangar-ops/p2p-profitability-spine-scaffold@v0.1.0")
     ap.add_argument("--notebook-dir", type=Path, default=REPO / "fabric")
     ap.add_argument("--tenant", default=None)
+    ap.add_argument("--client-id", default=None, help="Public client app id for sign-in (default: azure-identity default)")
+    ap.add_argument("--auth", choices=["interactive", "default"], default="interactive",
+                    help="interactive = browser sign-in; default = DefaultAzureCredential (CI, az login, azure/login OIDC)")
     ap.add_argument("--create-workspace", action="store_true", help="Create the workspace on the first active capacity if missing")
     ap.add_argument("--capacity-id", default=None, help="Capacity to use with --create-workspace")
     ap.add_argument("--run", action="store_true", help="Run bronze then gold notebooks after deploy")
     a = ap.parse_args()
 
-    fab = Fabric(InteractiveBrowserCredential(tenant_id=a.tenant))
+    if a.auth == "default":
+        cred: TokenCredential = DefaultAzureCredential()
+    else:
+        cred = InteractiveBrowserCredential(tenant_id=a.tenant, **({"client_id": a.client_id} if a.client_id else {}))
+    fab = Fabric(cred)
     r = fab.call("GET", "/workspaces")
     r.raise_for_status()
     ws = next((w for w in r.json()["value"] if w["displayName"] == a.workspace), None)

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "namePrefix": { "value": "p2pspine" },
+    "location": { "value": "southeastasia" },
+    "tags": { "value": { "workload": "p2p-profitability-spine", "env": "dev" } },
+    "keyVaultEnablePurgeProtection": { "value": false },
+    "projectName": { "value": "spine" },
+    "modelDeploymentName": { "value": "gpt-5.4-mini" },
+    "modelName": { "value": "gpt-5.4-mini" },
+    "modelVersion": { "value": "2026-03-17" },
+    "modelSkuName": { "value": "GlobalStandard" },
+    "modelCapacity": { "value": 10 },
+    "searchSku": { "value": "basic" },
+    "deployFabricCapacity": { "value": false },
+    "fabricSku": { "value": "F2" },
+    "fabricAdminMembers": { "value": [ "admin@example.com" ] }
+  }
+}

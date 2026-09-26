@@ -1,0 +1,1088 @@
+{
+ "status": "succeeded",
+ "createdDateTime": "2026-01-01T00:00:00Z",
+ "lastUpdatedDateTime": "2026-01-01T00:00:05Z",
+ "analyzeResult": {
+  "apiVersion": "2024-11-30",
+  "modelId": "prebuilt-layout",
+  "stringIndexType": "textElements",
+  "content": "Synthetic Test Laboratory - Certificate of Analysis\nLot No: LOT7\nElement\nResult\nUnit\nMethod\npurity\n99.2\n%\nICP-OES\nNa\n800\nppm\nICP-OES\nFe\n<5\nppm\nICP-MS\nMg\n12\nmg/kg\nICP-MS\nCl\n0.01\nwt%\nIC\nSO4\n150\nppm\nIC",
+  "pages": [
+   {
+    "pageNumber": 1,
+    "width": 8.5,
+    "height": 11,
+    "unit": "inch",
+    "words": [
+     {
+      "content": "Synthetic",
+      "span": {
+       "offset": 0,
+       "length": 9
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "Test",
+      "span": {
+       "offset": 10,
+       "length": 4
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "Laboratory",
+      "span": {
+       "offset": 15,
+       "length": 10
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "-",
+      "span": {
+       "offset": 26,
+       "length": 1
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "Certificate",
+      "span": {
+       "offset": 28,
+       "length": 11
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "of",
+      "span": {
+       "offset": 40,
+       "length": 2
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "Analysis",
+      "span": {
+       "offset": 43,
+       "length": 8
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "Lot",
+      "span": {
+       "offset": 52,
+       "length": 3
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "No:",
+      "span": {
+       "offset": 56,
+       "length": 3
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "LOT7",
+      "span": {
+       "offset": 60,
+       "length": 4
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "Element",
+      "span": {
+       "offset": 65,
+       "length": 7
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "Result",
+      "span": {
+       "offset": 73,
+       "length": 6
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "Unit",
+      "span": {
+       "offset": 80,
+       "length": 4
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "Method",
+      "span": {
+       "offset": 85,
+       "length": 6
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "purity",
+      "span": {
+       "offset": 92,
+       "length": 6
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "99.2",
+      "span": {
+       "offset": 99,
+       "length": 4
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "%",
+      "span": {
+       "offset": 104,
+       "length": 1
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "ICP-OES",
+      "span": {
+       "offset": 106,
+       "length": 7
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "Na",
+      "span": {
+       "offset": 114,
+       "length": 2
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "800",
+      "span": {
+       "offset": 117,
+       "length": 3
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "ppm",
+      "span": {
+       "offset": 121,
+       "length": 3
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "ICP-OES",
+      "span": {
+       "offset": 125,
+       "length": 7
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "Fe",
+      "span": {
+       "offset": 133,
+       "length": 2
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "<5",
+      "span": {
+       "offset": 136,
+       "length": 2
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "ppm",
+      "span": {
+       "offset": 139,
+       "length": 3
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "ICP-MS",
+      "span": {
+       "offset": 143,
+       "length": 6
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "Mg",
+      "span": {
+       "offset": 150,
+       "length": 2
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "12",
+      "span": {
+       "offset": 153,
+       "length": 2
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "mg/kg",
+      "span": {
+       "offset": 156,
+       "length": 5
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "ICP-MS",
+      "span": {
+       "offset": 162,
+       "length": 6
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "Cl",
+      "span": {
+       "offset": 169,
+       "length": 2
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "0.01",
+      "span": {
+       "offset": 172,
+       "length": 4
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "wt%",
+      "span": {
+       "offset": 177,
+       "length": 3
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "IC",
+      "span": {
+       "offset": 181,
+       "length": 2
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "SO4",
+      "span": {
+       "offset": 184,
+       "length": 3
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "150",
+      "span": {
+       "offset": 188,
+       "length": 3
+      },
+      "confidence": 0.55
+     },
+     {
+      "content": "ppm",
+      "span": {
+       "offset": 192,
+       "length": 3
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "IC",
+      "span": {
+       "offset": 196,
+       "length": 2
+      },
+      "confidence": 0.98
+     }
+    ],
+    "lines": [],
+    "spans": [
+     {
+      "offset": 0,
+      "length": 199
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "rowCount": 7,
+    "columnCount": 4,
+    "cells": [
+     {
+      "rowIndex": 0,
+      "columnIndex": 0,
+      "content": "Element",
+      "spans": [
+       {
+        "offset": 65,
+        "length": 7
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ],
+      "kind": "columnHeader"
+     },
+     {
+      "rowIndex": 0,
+      "columnIndex": 1,
+      "content": "Result",
+      "spans": [
+       {
+        "offset": 73,
+        "length": 6
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ],
+      "kind": "columnHeader"
+     },
+     {
+      "rowIndex": 0,
+      "columnIndex": 2,
+      "content": "Unit",
+      "spans": [
+       {
+        "offset": 80,
+        "length": 4
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ],
+      "kind": "columnHeader"
+     },
+     {
+      "rowIndex": 0,
+      "columnIndex": 3,
+      "content": "Method",
+      "spans": [
+       {
+        "offset": 85,
+        "length": 6
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ],
+      "kind": "columnHeader"
+     },
+     {
+      "rowIndex": 1,
+      "columnIndex": 0,
+      "content": "purity",
+      "spans": [
+       {
+        "offset": 92,
+        "length": 6
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 1,
+      "columnIndex": 1,
+      "content": "99.2",
+      "spans": [
+       {
+        "offset": 99,
+        "length": 4
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 1,
+      "columnIndex": 2,
+      "content": "%",
+      "spans": [
+       {
+        "offset": 104,
+        "length": 1
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 1,
+      "columnIndex": 3,
+      "content": "ICP-OES",
+      "spans": [
+       {
+        "offset": 106,
+        "length": 7
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 2,
+      "columnIndex": 0,
+      "content": "Na",
+      "spans": [
+       {
+        "offset": 114,
+        "length": 2
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 2,
+      "columnIndex": 1,
+      "content": "800",
+      "spans": [
+       {
+        "offset": 117,
+        "length": 3
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 2,
+      "columnIndex": 2,
+      "content": "ppm",
+      "spans": [
+       {
+        "offset": 121,
+        "length": 3
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 2,
+      "columnIndex": 3,
+      "content": "ICP-OES",
+      "spans": [
+       {
+        "offset": 125,
+        "length": 7
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 3,
+      "columnIndex": 0,
+      "content": "Fe",
+      "spans": [
+       {
+        "offset": 133,
+        "length": 2
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 3,
+      "columnIndex": 1,
+      "content": "<5",
+      "spans": [
+       {
+        "offset": 136,
+        "length": 2
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 3,
+      "columnIndex": 2,
+      "content": "ppm",
+      "spans": [
+       {
+        "offset": 139,
+        "length": 3
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 3,
+      "columnIndex": 3,
+      "content": "ICP-MS",
+      "spans": [
+       {
+        "offset": 143,
+        "length": 6
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 4,
+      "columnIndex": 0,
+      "content": "Mg",
+      "spans": [
+       {
+        "offset": 150,
+        "length": 2
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 4,
+      "columnIndex": 1,
+      "content": "12",
+      "spans": [
+       {
+        "offset": 153,
+        "length": 2
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 4,
+      "columnIndex": 2,
+      "content": "mg/kg",
+      "spans": [
+       {
+        "offset": 156,
+        "length": 5
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 4,
+      "columnIndex": 3,
+      "content": "ICP-MS",
+      "spans": [
+       {
+        "offset": 162,
+        "length": 6
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 5,
+      "columnIndex": 0,
+      "content": "Cl",
+      "spans": [
+       {
+        "offset": 169,
+        "length": 2
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 5,
+      "columnIndex": 1,
+      "content": "0.01",
+      "spans": [
+       {
+        "offset": 172,
+        "length": 4
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 5,
+      "columnIndex": 2,
+      "content": "wt%",
+      "spans": [
+       {
+        "offset": 177,
+        "length": 3
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 5,
+      "columnIndex": 3,
+      "content": "IC",
+      "spans": [
+       {
+        "offset": 181,
+        "length": 2
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 6,
+      "columnIndex": 0,
+      "content": "SO4",
+      "spans": [
+       {
+        "offset": 184,
+        "length": 3
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 6,
+      "columnIndex": 1,
+      "content": "150",
+      "spans": [
+       {
+        "offset": 188,
+        "length": 3
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 6,
+      "columnIndex": 2,
+      "content": "ppm",
+      "spans": [
+       {
+        "offset": 192,
+        "length": 3
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 6,
+      "columnIndex": 3,
+      "content": "IC",
+      "spans": [
+       {
+        "offset": 196,
+        "length": 2
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     }
+    ],
+    "boundingRegions": [
+     {
+      "pageNumber": 1,
+      "polygon": [
+       0,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0,
+       1
+      ]
+     }
+    ],
+    "spans": []
+   }
+  ]
+ }
+}

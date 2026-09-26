@@ -35,7 +35,18 @@ If your tenant blocks outbound pip, build a wheel (`python -m pip wheel . -w dis
 Fabric **Environment** as a custom library, attach that environment to the notebook, and clear
 `ENGINE_SPEC`.
 
-### Alternative: Git integration
+If sign-in returns `access_denied` / "Need admin approval", your tenant blocks the default public
+client. Retry with the Microsoft Azure PowerShell first-party client, which is usually pre-consented:
+`--client-id 1950a258-227b-4e31-a9cf-717495945fc2`. If that is also blocked, ask a tenant admin to
+consent, or use the UI-only route below.
+
+For CI, pass `--auth default` (DefaultAzureCredential) after `azure/login`. See
+[.github/workflows/fabric-deploy.yml](../.github/workflows/fabric-deploy.yml) and the OIDC app
+setup in [infra/README.md](../infra/README.md). The Azure resources (Foundry, AI Search, Key
+Vault, monitoring, and an optional F-SKU capacity) are defined in
+[infra/azuredeploy.json](../infra/azuredeploy.json).
+
+### Alternative: Git integration (UI only, no API sign-in)
 
 Workspace settings → Git integration → connect to this repo, branch `main`, folder `fabric`.
 Sync. Create the lakehouse, upload `data/<dataset>/*` to `Files/bronze/<dataset>/`, set the

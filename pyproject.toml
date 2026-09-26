@@ -16,6 +16,7 @@ dependencies = []
 dev = ["pytest>=8.0", "ruff>=0.5"]
 deploy = ["azure-identity>=1.17", "requests>=2.31"]
 foundry = ["azure-identity>=1.17", "azure-ai-projects>=2.7.0"]
+azure = ["azure-identity>=1.17", "pypdf>=4.0", "python-docx>=1.1", "openpyxl>=3.1"]
 
 [project.scripts]
 p2p-spine = "p2p_spine.cli:main"

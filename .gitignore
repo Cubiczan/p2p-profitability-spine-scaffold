@@ -7,3 +7,5 @@ dist/
 build/
 .env
 *.pyc
+# local ARM parameter files (tenant-specific values)
+infra/azuredeploy.parameters.json

@@ -1,0 +1,465 @@
+{
+ "status": "succeeded",
+ "createdDateTime": "2026-01-01T00:00:00Z",
+ "lastUpdatedDateTime": "2026-01-01T00:00:05Z",
+ "analyzeResult": {
+  "apiVersion": "2024-11-30",
+  "modelId": "prebuilt-invoice",
+  "stringIndexType": "textElements",
+  "content": "INVOICE INV-900 Date 2026-06-30 Bill to Buyer Co From Plant Co",
+  "pages": [
+   {
+    "pageNumber": 1,
+    "width": 8.5,
+    "height": 11,
+    "unit": "inch",
+    "words": [
+     {
+      "content": "INVOICE",
+      "span": {
+       "offset": 0,
+       "length": 7
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "INV-900",
+      "span": {
+       "offset": 8,
+       "length": 7
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "Date",
+      "span": {
+       "offset": 16,
+       "length": 4
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "2026-06-30",
+      "span": {
+       "offset": 21,
+       "length": 10
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "Bill",
+      "span": {
+       "offset": 32,
+       "length": 4
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "to",
+      "span": {
+       "offset": 37,
+       "length": 2
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "Buyer",
+      "span": {
+       "offset": 40,
+       "length": 5
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "Co",
+      "span": {
+       "offset": 46,
+       "length": 2
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "From",
+      "span": {
+       "offset": 49,
+       "length": 4
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "Plant",
+      "span": {
+       "offset": 54,
+       "length": 5
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "Co",
+      "span": {
+       "offset": 60,
+       "length": 2
+      },
+      "confidence": 0.99
+     }
+    ],
+    "lines": [],
+    "spans": [
+     {
+      "offset": 0,
+      "length": 63
+     }
+    ]
+   }
+  ],
+  "documents": [
+   {
+    "docType": "invoice",
+    "fields": {
+     "InvoiceId": {
+      "type": "string",
+      "valueString": "INV-900",
+      "content": "INV-900",
+      "confidence": 0.97,
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     "InvoiceDate": {
+      "type": "date",
+      "valueDate": "2026-06-30",
+      "content": "30 Jun 2026",
+      "confidence": 0.95,
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     "CustomerName": {
+      "type": "string",
+      "valueString": "Buyer Co",
+      "content": "Buyer Co",
+      "confidence": 0.93,
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     "VendorName": {
+      "type": "string",
+      "valueString": "Plant Co",
+      "content": "Plant Co",
+      "confidence": 0.9,
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     "SubTotal": {
+      "type": "currency",
+      "valueCurrency": {
+       "amount": 84952.4,
+       "currencyCode": "USD",
+       "currencySymbol": "$"
+      },
+      "content": "84952.4",
+      "confidence": 0.62,
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     "InvoiceTotal": {
+      "type": "currency",
+      "valueCurrency": {
+       "amount": 84952.4,
+       "currencyCode": "USD",
+       "currencySymbol": "$"
+      },
+      "content": "84952.4",
+      "confidence": 0.91,
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     "Items": {
+      "type": "array",
+      "valueArray": [
+       {
+        "type": "object",
+        "confidence": 0.9,
+        "boundingRegions": [
+         {
+          "pageNumber": 1,
+          "polygon": [
+           0,
+           0,
+           1,
+           0,
+           1,
+           1,
+           0,
+           1
+          ]
+         }
+        ],
+        "valueObject": {
+         "Description": {
+          "type": "string",
+          "valueString": "Mixed hydroxide 20.000 wmt",
+          "content": "Mixed hydroxide 20.000 wmt",
+          "confidence": 0.92,
+          "boundingRegions": [
+           {
+            "pageNumber": 1,
+            "polygon": [
+             0,
+             0,
+             1,
+             0,
+             1,
+             1,
+             0,
+             1
+            ]
+           }
+          ]
+         },
+         "Quantity": {
+          "type": "number",
+          "valueNumber": 20.0,
+          "content": "20.000",
+          "confidence": 0.9
+         },
+         "Unit": {
+          "type": "string",
+          "valueString": "wmt",
+          "content": "wmt",
+          "confidence": 0.88,
+          "boundingRegions": [
+           {
+            "pageNumber": 1,
+            "polygon": [
+             0,
+             0,
+             1,
+             0,
+             1,
+             1,
+             0,
+             1
+            ]
+           }
+          ]
+         },
+         "UnitPrice": {
+          "type": "currency",
+          "valueCurrency": {
+           "amount": 4247.62,
+           "currencyCode": "USD",
+           "currencySymbol": "$"
+          },
+          "content": "4247.62",
+          "confidence": 0.89,
+          "boundingRegions": [
+           {
+            "pageNumber": 1,
+            "polygon": [
+             0,
+             0,
+             1,
+             0,
+             1,
+             1,
+             0,
+             1
+            ]
+           }
+          ]
+         },
+         "Amount": {
+          "type": "currency",
+          "valueCurrency": {
+           "amount": 84952.4,
+           "currencyCode": "USD",
+           "currencySymbol": "$"
+          },
+          "content": "84952.4",
+          "confidence": 0.93,
+          "boundingRegions": [
+           {
+            "pageNumber": 1,
+            "polygon": [
+             0,
+             0,
+             1,
+             0,
+             1,
+             1,
+             0,
+             1
+            ]
+           }
+          ]
+         }
+        }
+       },
+       {
+        "type": "object",
+        "confidence": 0.7,
+        "boundingRegions": [
+         {
+          "pageNumber": 1,
+          "polygon": [
+           0,
+           0,
+           1,
+           0,
+           1,
+           1,
+           0,
+           1
+          ]
+         }
+        ],
+        "valueObject": {
+         "Description": {
+          "type": "string",
+          "valueString": "Assay adjustment",
+          "content": "Assay adjustment",
+          "confidence": 0.71,
+          "boundingRegions": [
+           {
+            "pageNumber": 1,
+            "polygon": [
+             0,
+             0,
+             1,
+             0,
+             1,
+             1,
+             0,
+             1
+            ]
+           }
+          ]
+         },
+         "Amount": {
+          "type": "currency",
+          "valueCurrency": {
+           "amount": 0.0,
+           "currencyCode": "USD",
+           "currencySymbol": "$"
+          },
+          "content": "0.0",
+          "confidence": 0.7,
+          "boundingRegions": [
+           {
+            "pageNumber": 1,
+            "polygon": [
+             0,
+             0,
+             1,
+             0,
+             1,
+             1,
+             0,
+             1
+            ]
+           }
+          ]
+         }
+        }
+       }
+      ]
+     }
+    },
+    "confidence": 0.99,
+    "boundingRegions": [
+     {
+      "pageNumber": 1,
+      "polygon": [
+       0,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0,
+       1
+      ]
+     }
+    ],
+    "spans": []
+   }
+  ]
+ }
+}

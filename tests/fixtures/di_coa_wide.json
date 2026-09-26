@@ -1,0 +1,671 @@
+{
+ "status": "succeeded",
+ "createdDateTime": "2026-01-01T00:00:00Z",
+ "lastUpdatedDateTime": "2026-01-01T00:00:05Z",
+ "analyzeResult": {
+  "apiVersion": "2024-11-30",
+  "modelId": "prebuilt-layout",
+  "stringIndexType": "textElements",
+  "content": "Certificate of Analysis - Mixed hydroxide\nSample ID\nNi (%)\nCo (%)\nCu (ppm)\nSpec max Cu (ppm)\nLOT-A\n40.1\n8.2\n120\n500\nLOT-B\n39.4\n7.9\nn.d.\n500",
+  "pages": [
+   {
+    "pageNumber": 1,
+    "width": 8.5,
+    "height": 11,
+    "unit": "inch",
+    "words": [
+     {
+      "content": "Certificate",
+      "span": {
+       "offset": 0,
+       "length": 11
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "of",
+      "span": {
+       "offset": 12,
+       "length": 2
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "Analysis",
+      "span": {
+       "offset": 15,
+       "length": 8
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "-",
+      "span": {
+       "offset": 24,
+       "length": 1
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "Mixed",
+      "span": {
+       "offset": 26,
+       "length": 5
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "hydroxide",
+      "span": {
+       "offset": 32,
+       "length": 9
+      },
+      "confidence": 0.99
+     },
+     {
+      "content": "Sample",
+      "span": {
+       "offset": 42,
+       "length": 6
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "ID",
+      "span": {
+       "offset": 49,
+       "length": 2
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "Ni",
+      "span": {
+       "offset": 52,
+       "length": 2
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "(%)",
+      "span": {
+       "offset": 55,
+       "length": 3
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "Co",
+      "span": {
+       "offset": 59,
+       "length": 2
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "(%)",
+      "span": {
+       "offset": 62,
+       "length": 3
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "Cu",
+      "span": {
+       "offset": 66,
+       "length": 2
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "(ppm)",
+      "span": {
+       "offset": 69,
+       "length": 5
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "Spec",
+      "span": {
+       "offset": 75,
+       "length": 4
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "max",
+      "span": {
+       "offset": 80,
+       "length": 3
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "Cu",
+      "span": {
+       "offset": 84,
+       "length": 2
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "(ppm)",
+      "span": {
+       "offset": 87,
+       "length": 5
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "LOT-A",
+      "span": {
+       "offset": 93,
+       "length": 5
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "40.1",
+      "span": {
+       "offset": 99,
+       "length": 4
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "8.2",
+      "span": {
+       "offset": 104,
+       "length": 3
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "120",
+      "span": {
+       "offset": 108,
+       "length": 3
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "500",
+      "span": {
+       "offset": 112,
+       "length": 3
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "LOT-B",
+      "span": {
+       "offset": 116,
+       "length": 5
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "39.4",
+      "span": {
+       "offset": 122,
+       "length": 4
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "7.9",
+      "span": {
+       "offset": 127,
+       "length": 3
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "n.d.",
+      "span": {
+       "offset": 131,
+       "length": 4
+      },
+      "confidence": 0.98
+     },
+     {
+      "content": "500",
+      "span": {
+       "offset": 136,
+       "length": 3
+      },
+      "confidence": 0.98
+     }
+    ],
+    "lines": [],
+    "spans": [
+     {
+      "offset": 0,
+      "length": 140
+     }
+    ]
+   }
+  ],
+  "tables": [
+   {
+    "rowCount": 3,
+    "columnCount": 5,
+    "cells": [
+     {
+      "rowIndex": 0,
+      "columnIndex": 0,
+      "content": "Sample ID",
+      "spans": [
+       {
+        "offset": 42,
+        "length": 9
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ],
+      "kind": "columnHeader"
+     },
+     {
+      "rowIndex": 0,
+      "columnIndex": 1,
+      "content": "Ni (%)",
+      "spans": [
+       {
+        "offset": 52,
+        "length": 6
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ],
+      "kind": "columnHeader"
+     },
+     {
+      "rowIndex": 0,
+      "columnIndex": 2,
+      "content": "Co (%)",
+      "spans": [
+       {
+        "offset": 59,
+        "length": 6
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ],
+      "kind": "columnHeader"
+     },
+     {
+      "rowIndex": 0,
+      "columnIndex": 3,
+      "content": "Cu (ppm)",
+      "spans": [
+       {
+        "offset": 66,
+        "length": 8
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ],
+      "kind": "columnHeader"
+     },
+     {
+      "rowIndex": 0,
+      "columnIndex": 4,
+      "content": "Spec max Cu (ppm)",
+      "spans": [
+       {
+        "offset": 75,
+        "length": 17
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ],
+      "kind": "columnHeader"
+     },
+     {
+      "rowIndex": 1,
+      "columnIndex": 0,
+      "content": "LOT-A",
+      "spans": [
+       {
+        "offset": 93,
+        "length": 5
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 1,
+      "columnIndex": 1,
+      "content": "40.1",
+      "spans": [
+       {
+        "offset": 99,
+        "length": 4
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 1,
+      "columnIndex": 2,
+      "content": "8.2",
+      "spans": [
+       {
+        "offset": 104,
+        "length": 3
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 1,
+      "columnIndex": 3,
+      "content": "120",
+      "spans": [
+       {
+        "offset": 108,
+        "length": 3
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 1,
+      "columnIndex": 4,
+      "content": "500",
+      "spans": [
+       {
+        "offset": 112,
+        "length": 3
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 2,
+      "columnIndex": 0,
+      "content": "LOT-B",
+      "spans": [
+       {
+        "offset": 116,
+        "length": 5
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 2,
+      "columnIndex": 1,
+      "content": "39.4",
+      "spans": [
+       {
+        "offset": 122,
+        "length": 4
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 2,
+      "columnIndex": 2,
+      "content": "7.9",
+      "spans": [
+       {
+        "offset": 127,
+        "length": 3
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 2,
+      "columnIndex": 3,
+      "content": "n.d.",
+      "spans": [
+       {
+        "offset": 131,
+        "length": 4
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     },
+     {
+      "rowIndex": 2,
+      "columnIndex": 4,
+      "content": "500",
+      "spans": [
+       {
+        "offset": 136,
+        "length": 3
+       }
+      ],
+      "boundingRegions": [
+       {
+        "pageNumber": 1,
+        "polygon": [
+         0,
+         0,
+         1,
+         0,
+         1,
+         1,
+         0,
+         1
+        ]
+       }
+      ]
+     }
+    ],
+    "boundingRegions": [
+     {
+      "pageNumber": 1,
+      "polygon": [
+       0,
+       0,
+       1,
+       0,
+       1,
+       1,
+       0,
+       1
+      ]
+     }
+    ],
+    "spans": []
+   }
+  ]
+ }
+}
