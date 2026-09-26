@@ -92,6 +92,17 @@ See [docs/microsoft-deployment.md](docs/microsoft-deployment.md). In short:
 Alternatively, connect the Fabric workspace to this repo with **Git integration**. The `fabric/`
 folder holds the notebooks in Fabric's Git source format.
 
+## Documentation
+
+| Doc | What it covers |
+|---|---|
+| [docs/microsoft-deployment.md](docs/microsoft-deployment.md) | Fabric + Foundry deployment: notebooks, Data Agent, Foundry agent, Git integration |
+| [docs/data-contract.md](docs/data-contract.md) | Input files, columns and metric keys |
+| [infra/README.md](infra/README.md) | Azure template (Foundry, AI Search, Key Vault, App Insights, optional Fabric F-SKU), deploy/status/teardown scripts, GitHub OIDC |
+| [docs/azure-ai-extensions.md](docs/azure-ai-extensions.md) | AI Search evidence index with page citations; Document Intelligence ingestion with human review |
+| [docs/azure-deployment-record.md](docs/azure-deployment-record.md) | End-to-end reference deployment: what broke and how it was fixed |
+| [docs/uipath-automation.md](docs/uipath-automation.md) | UiPath automation layer: evidence intake, rebuilds, invoice integrity, sign-off |
+
 ## Adapting to your plant
 
 Everything company-specific lives in a data-contract folder. See
