@@ -61,6 +61,23 @@ pytest -q
 
 Outputs: `out/example/gold/*.csv`, `evidence_pack.json`, `report.md`.
 
+## Live on Microsoft Fabric
+
+Deployed with `deploy/fabric_deploy.py` into a Fabric workspace: lakehouse, two notebooks,
+and the silver/gold Delta tables the Fabric Data Agent and Foundry agent read.
+
+**Workspace**: lakehouse, SQL analytics endpoint and the two spine notebooks.
+
+![Fabric workspace](docs/screenshots/gl_01_workspace.png)
+
+**Lakehouse**: `bronze_*` tables loaded from the data contract, with the source file SHA-256 and load time on every row.
+
+![Lakehouse bronze tables](docs/screenshots/gl_02_lakehouse.png)
+
+**Question register** (`gold_question_register`): each diligence question with its computed answer, status, confidence and evidence.
+
+![Question register in Fabric](docs/screenshots/gl_03_question_register.png)
+
 ## Deploy on Microsoft
 
 See [docs/microsoft-deployment.md](docs/microsoft-deployment.md). In short:
